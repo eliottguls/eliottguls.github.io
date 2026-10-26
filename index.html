@@ -178,6 +178,29 @@ footer .btn:hover{background:var(--bg);color:var(--ink)}
 
     <article class="projet">
       <div>
+        <h3>Rennes en temps réel</h3>
+        <p class="quand">2026, projet personnel</p>
+        <p class="resume">Les bus, le métro et les vélos du réseau STAR suivis en continu, avec une chaîne de streaming de bout en bout.</p>
+        <div class="liens"><a href="https://github.com/eliottguls/rennes-velo-streaming">Code sur GitHub</a></div>
+      </div>
+      <div class="droite">
+        <dl class="flux">
+          <div><dt>Entrée</dt><dd>Positions GTFS-RT des bus et du métro, stations vélos GBFS, open data STAR</dd></div>
+          <div><dt>Traitement</dt><dd>Producteurs Python vers Redpanda, jobs Flink SQL en temps d'événement avec watermarks</dd></div>
+          <div><dt>Sortie</dt><dd>Tables Postgres mises à jour en continu, carte et latences en direct dans Grafana</dd></div>
+        </dl>
+        <p>Flink déduit la vitesse de chaque véhicule à partir de ses positions successives, agrège l'activité par ligne à la minute et estime les départs et arrivées de vélos. Le dashboard sépare la latence due à la source de celle du pipeline.</p>
+        <div class="chiffres">
+          <div><b>5 s</b><span>entre deux lectures des positions</span></div>
+          <div><b>2</b><span>jobs Flink SQL</span></div>
+          <div><b>3</b><span>flux open data</span></div>
+        </div>
+        <div class="pile"><span>Flink SQL</span><span>Redpanda (Kafka)</span><span>Python</span><span>PostgreSQL</span><span>Grafana</span><span>Docker Compose</span></div>
+      </div>
+    </article>
+
+    <article class="projet">
+      <div>
         <h3>DBLPViz</h3>
         <p class="quand">2023, en équipe de trois</p>
         <p class="resume">Cinq sources de bibliographie scientifique réunies dans une seule base PostgreSQL, interrogeable depuis un site web.</p>
@@ -305,6 +328,7 @@ footer .btn:hover{background:var(--bg);color:var(--ink)}
           <li>PostgreSQL<span>DBLPViz, base du DUT</span></li>
           <li>Modélisation en étoile et en flocon<span>DBLPViz</span></li>
           <li>Intégration CSV et API<span>DBLPViz</span></li>
+          <li>Streaming Flink SQL et Kafka<span>Rennes en temps réel</span></li>
         </ul>
       </div>
       <div>
@@ -319,7 +343,7 @@ footer .btn:hover{background:var(--bg);color:var(--ink)}
       <div>
         <h3>Infrastructure</h3>
         <ul>
-          <li>Docker<span>chaîne de traitement</span></li>
+          <li>Docker et Docker Compose<span>chaîne de traitement, Rennes en temps réel</span></li>
           <li>Bash<span>collecte, automatisation</span></li>
           <li>Git et GitHub Pages<span>partout</span></li>
         </ul>
