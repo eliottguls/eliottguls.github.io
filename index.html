@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eliott Guillossou</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portfolio d'Eliott Guillossou : développement web, 3D, accessibilité et data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Mise en page : colonne éditoriale unique, index de projets en lignes (méta à gauche, récit à droite), frise des années en ouverture. */
+:root{
+  --bg:#f2f4f5; --surface:#ffffff; --ink:#13202a; --muted:#56646e; --line:#d5dce0;
+  --cire:#f2c230; --cire-ink:#13202a; --link:#1d4e74;
+  --display:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;--s12:48px;--s16:64px;--s24:96px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1820; --surface:#14212b; --ink:#e4eaee; --muted:#93a2ac; --line:#26343e;
+  --cire:#f2c230; --cire-ink:#13202a; --link:#8fc3ea; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1820; --surface:#14212b; --ink:#e4eaee; --muted:#93a2ac; --line:#26343e;
+  --cire:#f2c230; --cire-ink:#13202a; --link:#8fc3ea; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--link);text-underline-offset:4px;text-decoration-thickness:1px}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;letter-spacing:-.01em}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* En-tête */
+.top{display:flex;justify-content:space-between;align-items:center;gap:var(--s4);padding-block:var(--s6);border-bottom:1px solid var(--line)}
+.top .who{font-family:var(--mono);font-size:14px}
+.top nav{display:flex;gap:var(--s6);flex-wrap:wrap}
+.top nav a{color:var(--ink);text-decoration:none;font-size:15px;min-height:44px;display:inline-flex;align-items:center}
+.top nav a:hover{text-decoration:underline}
+
+/* Ouverture */
+.hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:var(--s12);align-items:end;padding-block:var(--s16) var(--s12)}
+.hero h1{font-size:clamp(52px,8.5vw,112px);line-height:.95}
+.hero h1 em{font-style:italic}
+.hero h1 mark{background:linear-gradient(transparent 62%,var(--cire) 62%,var(--cire) 92%,transparent 92%);color:inherit;padding-inline:.04em}
+.hero p{max-width:52ch;margin:var(--s6) 0 0;color:var(--muted);font-size:18px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s8)}
+.btn{display:inline-flex;align-items:center;gap:var(--s2);min-height:44px;padding:0 var(--s4);border:1px solid var(--ink);color:var(--ink);text-decoration:none;font-weight:500;font-size:15px;border-radius:2px;transition:background-color .15s ease-out,color .15s ease-out}
+.btn:hover{background:var(--ink);color:var(--bg)}
+.btn.primary{background:var(--cire);border-color:var(--cire);color:var(--cire-ink)}
+.btn.primary:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+
+/* Frise */
+.frise{margin:0;border:1px solid var(--line);background:var(--surface);padding:var(--s6);border-radius:2px}
+.frise .cols{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s2);align-items:end;height:150px;margin-top:var(--s4);border-bottom:1px solid var(--ink);padding-bottom:var(--s2)}
+.frise .col{display:flex;flex-direction:column-reverse;gap:3px;align-items:center}
+.frise .col i{display:block;width:100%;max-width:28px;height:9px;background:var(--ink);opacity:.8}
+.frise .col i.star{background:var(--cire);opacity:1}
+.frise .years{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s2);margin-top:var(--s2);font-family:var(--mono);font-size:12px;color:var(--muted);text-align:center;font-variant-numeric:tabular-nums}
+.frise .legend{display:flex;gap:var(--s4);flex-wrap:wrap;margin-top:var(--s4);font-size:13px;color:var(--muted)}
+.frise .legend span{display:inline-flex;align-items:center;gap:6px}
+.frise .legend i{width:12px;height:8px;display:inline-block;background:var(--ink);opacity:.8}
+.frise .legend i.star{background:var(--cire);opacity:1}
+
+/* Projets */
+section{padding-block:var(--s16)}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s4);flex-wrap:wrap;border-bottom:1px solid var(--ink);padding-bottom:var(--s4)}
+.sec-head h2{font-size:clamp(36px,5vw,56px);line-height:1}
+.projet{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:var(--s8);padding-block:var(--s12);border-bottom:1px solid var(--line)}
+.meta{display:flex;flex-direction:column;gap:var(--s2);font-family:var(--mono);font-size:13px;color:var(--muted)}
+.meta .an{font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:var(--s2)}
+.tags span{border:1px solid var(--line);padding:2px 8px;border-radius:2px;font-size:12px;color:var(--ink);white-space:nowrap}
+.projet h3{font-size:clamp(30px,3.6vw,44px);line-height:1.05}
+.projet .sous{margin:var(--s2) 0 0;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.projet .txt{max-width:62ch;min-width:0}
+.projet p{margin:var(--s4) 0 0}
+.projet ul{margin:var(--s4) 0 0;padding-left:1.1em}
+.projet li{margin-top:var(--s1)}
+.liens{display:flex;gap:var(--s6);flex-wrap:wrap;margin-top:var(--s6);font-weight:500;font-size:15px}
+.liens a{min-height:44px;display:inline-flex;align-items:center}
+.chiffres{display:flex;gap:var(--s8);flex-wrap:wrap;margin-top:var(--s6);padding:var(--s4) var(--s6);background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--cire)}
+.chiffres div{display:flex;flex-direction:column}
+.chiffres b{font-family:var(--display);font-weight:400;font-size:40px;line-height:1;font-variant-numeric:tabular-nums}
+.chiffres span{font-size:13px;color:var(--muted)}
+.vedette h3{font-size:clamp(36px,4.6vw,60px)}
+
+/* Autres projets */
+.autres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 var(--s8);margin-top:var(--s6)}
+.autre{padding-block:var(--s6);border-bottom:1px solid var(--line);min-width:0}
+.autre a.t{font-family:var(--display);font-size:26px;line-height:1.1;color:var(--ink);text-decoration:none}
+.autre a.t:hover{text-decoration:underline}
+.autre p{margin:var(--s2) 0 0;font-size:15px;color:var(--muted)}
+.autre .label{display:block;margin-top:var(--s3);text-transform:none;letter-spacing:0}
+
+/* Pied */
+footer{border-top:1px solid var(--ink);padding-block:var(--s12) var(--s16)}
+footer .grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:var(--s8);align-items:end}
+footer h2{font-size:clamp(36px,5vw,56px);line-height:1}
+footer p{color:var(--muted);margin:var(--s4) 0 0;max-width:48ch}
+footer .liens{justify-content:flex-end}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:minmax(0,1fr);gap:var(--s8);padding-block:var(--s12) var(--s8)}
+  .projet{grid-template-columns:minmax(0,1fr);gap:var(--s4)}
+  .meta{flex-direction:row;flex-wrap:wrap;gap:var(--s2) var(--s4);align-items:center}
+  .tags{margin-top:0}
+  .autres{grid-template-columns:minmax(0,1fr)}
+  footer .grid{grid-template-columns:minmax(0,1fr)}
+  footer .liens{justify-content:flex-start}
+  .top nav{gap:var(--s4)}
+}
+@media (max-width:480px){.top nav a.opt{display:none}}
+@media (prefers-reduced-motion:no-preference){
+  .hero h1,.hero p,.hero .cta,.frise{animation:monte .6s cubic-bezier(.2,.7,.2,1) both}
+  .hero p{animation-delay:.08s}.hero .cta{animation-delay:.14s}.frise{animation-delay:.2s}
+  @keyframes monte{from{transform:translateY(10px)}to{transform:none}}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <span class="who">eliottguls</span>
+    <nav aria-label="Navigation principale">
+      <a href="#projets">Projets</a>
+      <a href="#autres" class="opt">Autres travaux</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <h1>Eliott <em>Guillossou</em>, développeur qui <mark>construit</mark> des outils utiles.</h1>
+      <p>Je fais des sites et des applications web, de la 3D dans le navigateur, des interfaces accessibles et un peu de data. Formé à l'IUT, basé en Bretagne, je publie mes projets sur GitHub.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projets">Voir les projets</a>
+        <a class="btn" href="https://github.com/eliottguls">Profil GitHub</a>
+      </div>
+    </div>
+    <figure class="frise" aria-label="Projets publics par année, de 2021 à 2026">
+      <span class="label">Projets publics par année</span>
+      <div class="cols" aria-hidden="true">
+        <div class="col"><i></i><i></i></div>
+        <div class="col"><i></i><i></i><i></i><i></i><i></i><i class="star"></i><i class="star"></i><i></i><i></i><i></i></div>
+        <div class="col"><i class="star"></i></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"><i class="star"></i><i class="star"></i><i class="star"></i></div>
+      </div>
+      <div class="years" aria-hidden="true"><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div>
+      <div class="legend"><span><i class="star"></i>présenté ici</span><span><i></i>autre dépôt public</span></div>
+    </figure>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="projets" aria-labelledby="t-projets">
+    <div class="sec-head">
+      <h2 id="t-projets">Projets choisis</h2>
+      <span class="label">Du plus récent au plus ancien</span>
+    </div>
+
+    <article class="projet vedette">
+      <div class="meta">
+        <span class="an">2026</span>
+        <span>Projet personnel</span>
+        <div class="tags"><span>Three.js</span><span>JavaScript</span><span>pdf.js</span><span>Service worker</span></div>
+      </div>
+      <div class="txt">
+        <h3>Manuel 3D de la 4L</h3>
+        <p class="sous">Renault 4 GTL Clan 1989 · préparation au 4L Trophy</p>
+        <p>Un manuel d'atelier interactif. On fait tourner un modèle 3D de la voiture, on clique sur une pièce pour ouvrir sa fiche, et on tape « changer le delco » ou « mon moteur chauffe » pour lancer la procédure en vue éclatée, étape par étape.</p>
+        <p>Le contenu vient de la Revue Technique Automobile. Le site marche hors ligne après une première visite, ce qui compte quand on est dans le désert.</p>
+        <div class="chiffres">
+          <div><b>33</b><span>procédures guidées</span></div>
+          <div><b>55</b><span>fiches pièces</span></div>
+          <div><b>0</b><span>réseau nécessaire</span></div>
+        </div>
+        <div class="liens">
+          <a href="https://eliottguls.github.io/4L-RAID/">Ouvrir le manuel ↗</a>
+          <a href="https://github.com/eliottguls/4L-RAID">Code source ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="projet">
+      <div class="meta">
+        <span class="an">2026</span>
+        <span>Site vitrine</span>
+        <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span></div>
+      </div>
+      <div class="txt">
+        <h3>Ker Avel</h3>
+        <p class="sous">Chambres d'hôtes en Bretagne · trois directions artistiques</p>
+        <p>Trois propositions complètes pour le site d'une maison d'hôtes, chacune avec sa typographie, sa palette et ses pages chambres : <em>Grand Large</em> (ocre et ardoise, capitales Art déco), <em>Domaine</em> (anthracite et titres dorés) et <em>Ciré</em> (sable, bleu marine et jaune ciré). Un sélecteur de charte permet de comparer les pistes en direct. Les pages sont générées par un petit script Python.</p>
+        <div class="liens">
+          <a href="https://eliottguls.github.io/ker-avel/">Voir les trois pistes ↗</a>
+          <a href="https://github.com/eliottguls/ker-avel">Code source ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="projet">
+      <div class="meta">
+        <span class="an">2026</span>
+        <span>Équipe de 3</span>
+        <div class="tags"><span>React 19</span><span>TypeScript</span><span>Tailwind</span><span>Leaflet</span></div>
+      </div>
+      <div class="txt">
+        <h3>Lecteur vidéo accessible</h3>
+        <p class="sous">Avec Killian Gougeon et Youen Le Bihan</p>
+        <p>Un lecteur de film pensé pour l'accessibilité : audio-description activable, sous-titres en français, anglais et espagnol, chapitres navigables, et une carte Leaflet qui suit les lieux du film au fil de la lecture.</p>
+        <div class="liens">
+          <a href="https://github.com/eliottguls/accessible-media-player">Code source ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="projet">
+      <div class="meta">
+        <span class="an">2023</span>
+        <span>Équipe de 3</span>
+        <div class="tags"><span>PHP</span><span>CodeIgniter</span><span>PostgreSQL</span><span>API REST</span></div>
+      </div>
+      <div class="txt">
+        <h3>DBLPViz</h3>
+        <p class="sous">Explorer la recherche en informatique</p>
+        <p>Une application web qui rassemble les données de DBLP, Semantic Scholar, CORE et Scimago pour rechercher des articles, retrouver le rang d'une conférence et étudier les auteurs. Le travail principal porte sur l'intégration des données : schémas en étoile et en flocon, scripts de migration et collecte automatisée.</p>
+        <div class="liens">
+          <a href="https://github.com/eliottguls/dblpViz">Code source ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="projet">
+      <div class="meta">
+        <span class="an">2022</span>
+        <span>Vision par ordinateur</span>
+        <div class="tags"><span>Python</span><span>OpenCV</span><span>NumPy</span></div>
+      </div>
+      <div class="txt">
+        <h3>Détection des lignes de route</h3>
+        <p class="sous">Canny, région d'intérêt, transformée de Hough</p>
+        <p>Un script qui repère les lignes de la voie sur une vidéo de conduite. Chaque image passe par un flou gaussien et un filtre de Canny, puis on garde le trapèze de la route et on cherche les segments avec la transformée de Hough. Les pentes sont moyennées pour tracer une ligne gauche et une ligne droite stables.</p>
+        <div class="liens">
+          <a href="https://github.com/eliottguls/road_lane_line_detection">Code source ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="projet">
+      <div class="meta">
+        <span class="an">2022</span>
+        <span>IUT · équipe de 4</span>
+        <div class="tags"><span>Docker</span><span>Bash</span><span>WeasyPrint</span></div>
+      </div>
+      <div class="txt">
+        <h3>Floutage automatique des visages</h3>
+        <p class="sous">Chaîne de traitement d'images en conteneurs</p>
+        <p>Un client dépose un lot de photos, la chaîne floute tous les visages dans un conteneur Docker, génère des pêle-mêle en HTML puis les convertit en PDF dans un second conteneur. Une seule commande lance tout le traitement.</p>
+        <div class="liens">
+          <a href="https://github.com/eliottguls/IUT-SAE1.03">Code source ↗</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="autres" aria-labelledby="t-autres">
+    <div class="sec-head">
+      <h2 id="t-autres">Autres travaux</h2>
+      <span class="label">Algorithmes, jeux, bases de données</span>
+    </div>
+    <div class="autres">
+      <div class="autre">
+        <a class="t" href="https://github.com/eliottguls/IUT-SAE2.02-the-knight-s-tour">Le tour du cavalier</a>
+        <p>Parcourir tout l'échiquier avec un cavalier, guidé par un plateau pondéré qui favorise les cases les moins accessibles.</p>
+        <span class="label">Python · 2022</span>
+      </div>
+      <div class="autre">
+        <a class="t" href="https://github.com/eliottguls/IUT-SAE1.02">Comparatif de tris</a>
+        <p>Tri par insertion, tri à peigne et tri rapide, mesurés sur 500 000 entiers puis sur des données Covid bretonnes.</p>
+        <span class="label">C · 2022</span>
+      </div>
+      <div class="autre">
+        <a class="t" href="https://github.com/eliottguls/IUT-SAE1.01">Yams</a>
+        <p>Le jeu de dés complet en console : 13 combinaisons, 3 lancers par tour, feuille de marque et cahier de tests.</p>
+        <span class="label">C · 2021</span>
+      </div>
+      <div class="autre">
+        <a class="t" href="https://github.com/eliottguls/IUT-SAE1.05">KOH FRAIS</a>
+        <p>Site vitrine pour un fabricant breton de glaces bio, du recueil des besoins à l'intégration.</p>
+        <span class="label">HTML · Bootstrap · 2022</span>
+      </div>
+      <div class="autre">
+        <a class="t" href="https://github.com/eliottguls/machine_learning_projects">Machine learning</a>
+        <p>Un KNN écrit à la main et une comparaison d'algorithmes de classification sur le jeu Iris.</p>
+        <span class="label">Python · 2022</span>
+      </div>
+      <div class="autre">
+        <a class="t" href="https://github.com/eliottguls/spaceinvader_projet">Space Invaders</a>
+        <p>Un shoot them up classique : vaisseau, tirs et vagues d'ennemis, avec des sprites dessinés pour l'occasion.</p>
+        <span class="label">Python · Pygame · 2021</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact" class="wrap">
+  <div class="grid">
+    <div>
+      <h2>On travaille ensemble ?</h2>
+      <p>Une idée de projet, un stage ou une question sur un dépôt : écrivez-moi sur GitHub.</p>
+    </div>
+    <div class="liens">
+      <a class="btn primary" href="https://github.com/eliottguls">github.com/eliottguls</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
